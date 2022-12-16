@@ -31,3 +31,9 @@ Route::get('/', function () {
     return view('welcome') ;
 
 })->middleware('care.app') ; 
+
+Route::get('/widgets/reservation', function () {
+
+    return view('/widgets/reservation') ;
+
+})->middleware('care.app') ; 

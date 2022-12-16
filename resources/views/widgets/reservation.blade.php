@@ -30,19 +30,18 @@
 
         <div>
 
-            <h1>The app is installed. {{ $adminId }}</h1>
+            <h1>Hello reservation</h1>
 
             <p>Admin ID: {{ $adminId }}</p>
             @if ($chainId)
                 <p>Chain ID: {{ $chainId }}</p> 
             @endif
 
-            <p>User ID: {{ $user->id }}</p>
             <p>User Uid: {{ $userUid }}</p>
             <p>Email: {{ $email }}</p>
             <p>Name: {{ $name }}</p>
 
-            <a href="/widgets/reservation">Open reservation widget</a>
+            <a href="/">Go back</a>
 
         </div>
 

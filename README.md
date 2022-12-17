@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Set up a basic app with Laravel
 
-## About Laravel
+In this tutorial we will setup a basic app and add it to the appstore. We will learn you how to set up the app, set up widgets, authenticate and communicate with the API and receive webhooks.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+We will use [Laravel with php 8.1](https://laravel.com)  for this example.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequirements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. You need basic knowlage of git and we work with the [Github CLI](https://cli.github.com).
+2. You need composer to install the needed dependancies. [Install Composer](https://getcomposer.org/doc/00-intro.md)
+3. To store tokens and logs we use MySQL
 
-## Learning Laravel
+### Install 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Clone the basic app GIT repository to your local machine.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/CampingCare/basic-app-laravel.git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+cd basic-app-laravel/
+```
 
-## Laravel Sponsors
+Install the depandencies with composer
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+composer install
+```
 
-### Premium Partners
+You need to setup your MySQL DB in the .env, copy the example .env and create a key for laravel.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Contributing
+Now we need to set up the modals in your mysql DB by running a migration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan migrate
+```
 
-## Code of Conduct
+### Start development server
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Start your server to check if everything is working
 
-## Security Vulnerabilities
+```bash
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Now the application will run on your local device, something like: `http://localhost:8000/`. You will see the default app url and it looks like this.
 
-## License
+![basic laravel app](../../static/img/tutorials/basic-laravel.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Create the app in the AppStore
+
+Go to the App Store and create a new app. [Open the App Store](https://app.camping.care/apps)
+
+![Add app](../../static/img/appstore/add-app.png)
+
+:::tip
+Need to know more about the App installation process, please read our App Store documentation. [App Store Documentation](../appstore/getting-started)
+:::
+
+### Widgets
+
+This app supports a default app url and several widgets. We have added an reservation tab widget as an example. Learn more about widgets.
+
+[App Store Widgets](../appstore/widgets)
+
+### Webhooks
+
+In this example we have setup an webhook receiver `http://localhost:8000/api/webhooks` (only for POST requests)
+
+:::countion
+In this example we did not secure the webhooks. Make sure you check the webhook private key with the key we send over in the request.
+:::
+
+For this example we used the `rates.update_prices` webhook trigger, so we will get an notification once a price has been changed. You can add multiple triggers to a single webhook.
+
+## Install the app
+
+To test the app you'll need to install it after you saved it. [Read more about the install process](../appstore/install)
+
+After installing the app you will see this screen.
+
+![basic laravel app installed](../../static/img/tutorials/basic-app-laravel-installed.png)
+
+Congratulations! You are now done, the basic app works!
+
+## Go Live
+
+The final think you need to do is upload your application to an public host. This can be any hosting company / cloud platform you prefer. As long as it runs php / mysql with an updated version.

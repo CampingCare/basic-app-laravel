@@ -48,6 +48,14 @@ Route::middleware(['care.app'])->group(function () {
 
     })  ; 
 
+    Route::get('/widgets/reservation', function (Request $request) {
+
+        view()->share('id', $request->input('id')) ;
+
+        return view('/widgets/reservation') ;
+
+    })  ; 
+
     Route::get('/logs', function (Request $request) {
         
         $logs = 'no logs' ; 

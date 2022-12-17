@@ -32,6 +32,7 @@
 
             <h1>Hello reservation</h1>
 
+            <p>Reservation ID: {{ $id }}</p>
             <p>Admin ID: {{ $adminId }}</p>
             @if ($chainId)
                 <p>Chain ID: {{ $chainId }}</p> 

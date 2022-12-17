@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\CareApi;
 use App\Models\Logs;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,11 +48,15 @@ Route::middleware(['care.app'])->group(function () {
 
     })  ; 
 
-    Route::get('/logs', function () {
+    Route::get('/logs', function (Request $request) {
         
         $logs = 'no logs' ; 
 
         if(Session::has('adminId')){
+
+            if($request->input('action') == 'clear'){
+                Logs::where('admin_id', Session::get('adminId'))->delete();
+            }
 
             $logs = Logs::where('admin_id', Session::get('adminId'))
                ->orderBy('id', 'desc')

@@ -36,7 +36,7 @@
                 <pre><?php print_r(json_decode(json_encode($log))) ?></pre>
             @endforeach
 
-            <a href="/">Back</a>
+            <a href="/">Back</a>  -  <a href="/logs?action=clear">Clear logs</a> 
             
             <script src="{{ asset('js/widgets.js')}}"></script>
 

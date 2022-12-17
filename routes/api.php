@@ -15,15 +15,18 @@ use App\Models\Logs;
 |
 */
 
-Route::post('/webhooks/contact', function (Request $request) {
+Route::post('/webhooks', function (Request $request) {
 
     $response = 'ok'; 
+    $data = $request->input('data') ;
+
+    // $data['id']
 
     $log = new Logs;
 
-    $log->description = 'Webhooks contact' ;
+    $log->description = $request->input('event') .' -- '. $request->input('admin_id') .' -- '. $request->input('key') ;
     $log->admin_id =  77 ;
-    $log->request =  json_encode('request') ;
+    $log->request =  json_encode($data) ;
     $log->response = json_encode($response);
 
     $log->save();

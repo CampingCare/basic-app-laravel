@@ -30,7 +30,11 @@
 
         <div>
 
-            <h1>Welcome, install the app to use it.</h1>
+            <h1>App settings page</h1>
+
+            <p>page to set and store your settings</p>
+
+            <a href="/">Back</a>
             
             <script src="{{ asset('js/widgets.js')}}"></script>
 

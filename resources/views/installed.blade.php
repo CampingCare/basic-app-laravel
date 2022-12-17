@@ -12,14 +12,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
         body, html {
-        background-color: #ffffff;
-        font-family: 'Poppins', sans-serif;
-        margin: 0px 0px 0px 0px;
-        overflow: hidden;
+            background-color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0px 0px 0px 0px;
+            overflow: hidden;
         }
 
         body  {
-        padding: 16px 16px;
+            padding: 16px 16px;
         }
 
         </style>
@@ -42,7 +42,10 @@
             <p>Email: {{ $email }}</p>
             <p>Name: {{ $name }}</p>
 
-            <a href="/widgets/reservation">Open reservation widget</a>
+            <a href="/settings">Settings</a> - 
+            <a href="/logs">Logs</a> 
+
+            <script src="{{ asset('js/widgets.js')}}"></script>
 
         </div>
 

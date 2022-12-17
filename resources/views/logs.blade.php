@@ -30,7 +30,13 @@
 
         <div>
 
-            <h1>Welcome, install the app to use it.</h1>
+            <h1>Logs</h1>
+
+            @foreach ($logs as $log)
+                <pre><?php print_r(json_decode(json_encode($log))) ?></pre>
+            @endforeach
+
+            <a href="/">Back</a>
             
             <script src="{{ asset('js/widgets.js')}}"></script>
 

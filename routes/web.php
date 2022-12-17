@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\CareApi;
+use App\Models\Logs;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,26 +15,57 @@ use App\CareApi;
 |
 */
 
-Route::get('/', function () {
+Route::middleware(['care.app'])->group(function () {
 
-    if(Session::get('installed')){
+    Route::get('/', function () {
 
-        $api = new CareApi() ;
+        if(Session::get('installed')){
 
-        $result = $api->get('/users/me', ['get_rights' => true]) ;
+            $api = new CareApi() ;
 
-        view()->share('user', $result->object()) ;
+            $result = $api->get('/users/me', ['get_rights' => true]) ;
 
-        return view('installed') ;
+            view()->share('user', $result->object()) ;
 
-    }
+            return view('installed') ;
+
+        }
+        
+        return view('welcome') ;
+
+    })  ; 
+
+    Route::get('/widgets/reservation', function () {
+
+        return view('/widgets/reservation') ;
+
+    })  ; 
+
+    Route::get('/settings', function () {
+
+        return view('/settings') ;
+
+    })  ; 
+
+    Route::get('/logs', function () {
+        
+        $logs = 'no logs' ; 
+
+        if(Session::has('adminId')){
+
+            $logs = Logs::where('admin_id', Session::get('adminId'))
+               ->orderBy('id', 'desc')
+               ->take(10)
+               ->get();
+
+        }
+
+        view()->share('logs', $logs) ;
+
+        return view('/logs') ;
+
+    })  ; 
+
     
-    return view('welcome') ;
 
-})->middleware('care.app') ; 
-
-Route::get('/widgets/reservation', function () {
-
-    return view('/widgets/reservation') ;
-
-})->middleware('care.app') ; 
+}) ;

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Logs;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/webhooks/contact', function (Request $request) {
+
+    $response = 'ok'; 
+
+    $log = new Logs;
+
+    $log->description = 'Webhooks contact' ;
+    $log->admin_id =  77 ;
+    $log->request =  json_encode('request') ;
+    $log->response = json_encode($response);
+
+    $log->save();
+    
+    return response()->json($response) ;
+
+})  ; 

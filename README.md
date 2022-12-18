@@ -72,7 +72,7 @@ This app supports a default app url and several widgets. We have added an reserv
 
 In this example we have setup an webhook receiver `http://localhost:8000/api/webhooks` (only for POST requests)
 
-:::countion
+:::tip
 In this example we did not secure the webhooks. Make sure you check the webhook private key with the key we send over in the request.
 :::
 

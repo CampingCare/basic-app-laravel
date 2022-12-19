@@ -17,8 +17,9 @@ return new class extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedBigInteger('admin_id');
-            $table->unsignedBigInteger('user_uid');
-            $table->unsignedBigInteger('chainid');
+            $table->unsignedBigInteger('chain_id')->nullable() ;
+
+            $table->string('user_uid');
 
             $table->string('id_token');
             $table->string('refresh_token');

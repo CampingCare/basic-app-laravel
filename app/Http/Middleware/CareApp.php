@@ -26,6 +26,15 @@ class CareApp
         $idToken = false ;
         $api = new CareApi();
 
+        $adminId = false ;
+
+        if($request->input('admin_id')){
+            Session::put('adminId', $request->input('admin_id')) ;
+            $adminId = $request->input('admin_id') ;
+        }else if(Session::has('adminId')){
+            $adminId = Session::get('adminId') ;
+        }
+
         if($request->input('authtoken')){
             $api->getTokens($request->input('authtoken'), true) ;
         }
@@ -35,15 +44,6 @@ class CareApp
             $idToken = Session::get('idToken') ;
             $installed = true ;
 
-        }
-
-        $adminId = false ;
-
-        if($request->input('admin_id')){
-            Session::put('adminId', $request->input('admin_id')) ;
-            $adminId = $request->input('admin_id') ;
-        }else if(Session::has('adminId')){
-            $adminId = Session::get('adminId') ;
         }
 
         $chainId = false ;

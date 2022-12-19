@@ -21,8 +21,8 @@ return new class extends Migration
 
             $table->string('user_uid');
 
-            $table->string('id_token');
-            $table->string('refresh_token');
+            $table->text('id_token');
+            $table->text('refresh_token');
             $table->string('expires_in');
 
             $table->json('data')->nullable() ; // store additional data with this token

@@ -25,7 +25,7 @@ Route::post('/webhooks', function (Request $request) {
     $log = new Logs;
 
     $log->description = $request->input('event') .' -- '. $request->input('admin_id') .' -- '. $request->input('key') ;
-    $log->admin_id =  77 ;
+    $log->admin_id = $request->input('admin_id') ;
     $log->request =  json_encode($data) ;
     $log->response = json_encode($response);
 

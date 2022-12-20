@@ -36,12 +36,6 @@ Route::middleware(['care.app'])->group(function () {
 
     })  ; 
 
-    Route::get('/widgets/reservation', function () {
-
-        return view('/widgets/reservation') ;
-
-    })  ; 
-
     Route::get('/settings', function () {
 
         return view('/settings') ;

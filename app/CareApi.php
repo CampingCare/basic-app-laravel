@@ -13,7 +13,7 @@ use App\Models\Logs;
 class CareApi
 {
 
-    public $endpoint = 'https://api.staging.camping.care/v21' ; 
+    public $endpoint = 'https://api.camping.care/v21' ; 
     
     public function get($path, $params = [])
     {

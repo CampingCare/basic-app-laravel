@@ -22,6 +22,28 @@ class CareApp
     public function handle(Request $request, Closure $next)
     {
         
+        // First check if the app runs into the Care platform
+        // The HTTP_REFERER should always be one of our platform
+        // allow request outside the platform if debug is on (Like a local env.)
+        $refererHost = false ;
+
+        $url = parse_url($request->server('HTTP_REFERER')) ;
+
+        if(is_array($url) && isset($url['host'])){
+            $refererHost = $url['host'] ;
+        }
+
+        if(
+            config('app.debug') === false && 
+            $refererHost != $request->host() &&
+            $refererHost != 'app.camping.care' &&
+            $refererHost != 'app.hotel.care' &&
+            $refererHost != 'app.bungalow.care'
+        ){
+            return response()->view('errors/not-in-platform');
+        }
+
+        // Set all the default settings
         $installed = false ;
         $idToken = false ;
         $api = new CareApi();

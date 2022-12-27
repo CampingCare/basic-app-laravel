@@ -89,7 +89,7 @@ class CareApi
             return true ;
         }        
 
-        if(time() < Session::get('expiresIn')){
+        if(time() > Session::get('expiresIn')){
 
             if(!Session::has('refreshToken') ){
                 throw new Exception("No refreshToken found", 1);

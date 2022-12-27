@@ -51,8 +51,14 @@ class CareApp
         $adminId = false ;
 
         if($request->input('admin_id')){
+
+            if(Session::has('adminId') && $request->input('admin_id') != Session::get('adminId')){
+                Session::flush();
+            }
+
             Session::put('adminId', $request->input('admin_id')) ;
             $adminId = $request->input('admin_id') ;
+            
         }else if(Session::has('adminId')){
             $adminId = Session::get('adminId') ;
         }

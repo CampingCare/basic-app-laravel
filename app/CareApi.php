@@ -160,6 +160,7 @@ class CareApi
         Session::put('refreshToken', $tokens->refresh_token) ;
         Session::put('expiresIn', $tokens->expires_in) ; 
         Session::put('userUid', $tokens->user_uid) ;
+        Session::put('adminId', $adminId) ;
 
         return true ;
         
@@ -172,7 +173,7 @@ class CareApi
 
             $log = new Logs;
             $log->description = 'CareApi error: ('.$response->getStatusCode().')' ;
-            $log->admin_id = $molliePayment->admin_id ;
+            $log->admin_id = Session::get('adminId') ;
             $log->request = json_encode($params) ;
             $log->response = json_encode($response->json()) ;
             $log->save() ;

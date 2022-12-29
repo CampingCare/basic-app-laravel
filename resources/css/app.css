@@ -1,0 +1,11 @@
+body, html {
+    background-color: #ffffff;
+    min-height: 100px;
+    /* font-family: 'Poppins', sans-serif;
+    margin: 0px 0px 0px 0px;
+    overflow: hidden; */
+}
+
+body  {
+    padding: 16px 16px;
+}
